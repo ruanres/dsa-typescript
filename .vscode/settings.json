@@ -1,0 +1,8 @@
+{
+  "workbench.colorCustomizations": {
+    "tab.activeBorderTop": "#FFD700",
+    "tab.activeForeground": "#FFD700"
+  },
+  "compile-hero.disable-compile-files-on-did-save-code": false,
+  "compile-hero.typescript-output-directory": "../build",
+}
