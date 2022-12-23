@@ -84,6 +84,16 @@ class LinkedList {
     return poppedNode;
   }
 
+  unshift(value: number) {
+    const newNode = new ListNode(value);
+    newNode.next = this.head;
+    this.head = newNode;
+    if(this.tail == null) {
+      this.tail = newNode;
+    }
+    this.length++;
+  }
+
 }
 
 export default LinkedList;
