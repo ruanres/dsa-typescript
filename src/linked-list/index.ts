@@ -1,4 +1,4 @@
-class ListNode {
+export class ListNode {
   value: number;
   next: ListNode | null;
 
@@ -50,7 +50,6 @@ class LinkedList {
     // console.log("Length: " + this.length);
     return this.length;
   }
-
   push(value: number) {
     const newNode = new ListNode(value);
     if (!this.tail) {
@@ -62,6 +61,27 @@ class LinkedList {
     }
     this.length += 1;
     return this;
+  }
+
+  pop() {
+    if(this.head == null) return null;
+
+    let newTail = null; 
+    let poppedNode = this.head;
+    while(poppedNode.next != null) {
+      newTail = poppedNode;
+      poppedNode = poppedNode.next;
+    }
+
+    if(newTail == null) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = newTail;
+      this.tail.next = null;
+    }
+    this.length--;
+    return poppedNode;
   }
 
 }
