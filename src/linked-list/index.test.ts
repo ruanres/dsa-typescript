@@ -2,7 +2,7 @@ import {beforeEach, describe, expect, test} from '@jest/globals';
 import LinkedList from '.';
 
 describe('LinkedList', () => {
-  let linkedList: LinkedList;
+  let linkedList: LinkedList<Number>;
 
   beforeEach(() => {
     linkedList = new LinkedList(1);

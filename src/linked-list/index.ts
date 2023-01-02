@@ -1,19 +1,19 @@
-export class ListNode {
-  value: number;
-  next: ListNode | null;
+export class ListNode <T> {
+  value: T;
+  next: ListNode <T> | null;
 
-  constructor(value: number) {
+  constructor(value: T) {
     this.value = value;
     this.next = null;
   }
 }
 
-class LinkedList {
-  head: ListNode | null;
-  tail: ListNode | null;
+class LinkedList <T> {
+  head: ListNode <T> | null;
+  tail: ListNode <T> | null;
   length: number;
 
-  constructor(value: number) {
+  constructor(value: T) {
     const newNode = new ListNode(value);
     this.head = newNode;
     this.tail = newNode;
@@ -29,28 +29,17 @@ class LinkedList {
   }
 
   getHead() {
-      // if (this.head === null) {
-      //     console.log("Head: null");
-      // } else {
-      //     console.log("Head: " + this.head.value);
-      // }
     return this.head ? this.head.value : null;
   }
 
   getTail() {
-      // if (this.tail === null) {
-      //     console.log("Tail: null");
-      // } else {
-      //     console.log("Tail: " + this.tail.value);
-      // }
       return this.tail ? this.tail.value : null;
   }
 
   getLength() {
-    // console.log("Length: " + this.length);
     return this.length;
   }
-  push(value: number) {
+  push(value: T) {
     const newNode = new ListNode(value);
     if (!this.tail) {
       this.head = newNode;
@@ -84,7 +73,7 @@ class LinkedList {
     return poppedNode;
   }
 
-  unshift(value: number) {
+  unshift(value: T) {
     const newNode = new ListNode(value);
     newNode.next = this.head;
     this.head = newNode;
@@ -97,29 +86,3 @@ class LinkedList {
 }
 
 export default LinkedList;
-
-
-// function test() {
-//     let myLinkedList = new LinkedList(4);
-//     myLinkedList.push(19);
-    
-//     myLinkedList.getHead();
-//     myLinkedList.getTail();
-//     myLinkedList.getLength();
-//     console.log("\nLinked List:");
-//     myLinkedList.printList();
-// }
-
-// test();
-
-/*
-    EXPECTED OUTPUT:
-    ----------------
-    Head: 4
-    Tail: 4
-    Length: 1
-    
-    Linked List:
-    4
-
-*/
