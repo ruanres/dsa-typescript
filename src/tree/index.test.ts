@@ -18,6 +18,16 @@ describe('Tree', () => {
     // children of node 2
     expect(tree.root?.left?.left?.value).toBe(4);
     expect(tree.root?.left?.right?.value).toBe(5);
+  });
 
+  it('should get the correct tree hight', () => {
+    let tree = new Tree([]);
+    expect(tree.getHight()).toBe(0);
+    tree = new Tree([1]);
+    expect(tree.getHight()).toBe(1);
+    tree = new Tree([1, 2]);
+    expect(tree.getHight()).toBe(2);
+    tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8]);
+    expect(tree.getHight()).toBe(4);
   });
 })

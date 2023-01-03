@@ -19,7 +19,7 @@ export default class Tree {
   public root: TreeNode | null = null;
 
   constructor(values: Array<number>) {
-    this.fillTree(values);
+    if (values.length > 0) this.fillTree(values);
   }
 
   private fillTree(values: Array<number>) {
@@ -43,6 +43,18 @@ export default class Tree {
   private getParentIndex(nodeIndex: number): number {
     const isEven = nodeIndex % 2 == 0;
     return isEven ? (nodeIndex / 2) - 1 : (nodeIndex - 1) / 2;
+  }
+
+  getHight() {
+    if(!this.root) return 0;
+
+    let hight = 0;
+    let currentNode: TreeNode | null = this.root;
+    while(currentNode) {
+      hight++;
+      currentNode = currentNode?.left;
+    }
+    return hight;
   }
 
 }
