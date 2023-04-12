@@ -8,86 +8,118 @@ describe('LinkedList', () => {
     linkedList = new LinkedList(1);
   });
 
-  test('push', () => {
-    expect(linkedList.getTail()).toBe(1);
-    linkedList.push(4);
-    expect(linkedList.getTail()).toBe(4);
-    expect(linkedList.getLength()).toBe(2);
-
+  describe('push', () => {
+    test('should add an item to end of the list', () => { 
+      linkedList.push(4);
+      expect(linkedList.getTail()).toBe(4);
+      expect(linkedList.getLength()).toBe(2);
+    });
   });
 
-  test('pop', () => {
-    linkedList.push(2);
-    expect(linkedList.getTail()).toBe(2);
-    expect(linkedList.getLength()).toBe(2);
-    let removedNode = linkedList.pop();
-    expect(removedNode?.value).toBe(2);
-    expect(linkedList.getTail()).toBe(1);
-    expect(linkedList.getLength()).toBe(1);
-    removedNode = linkedList.pop();
-    expect(removedNode?.value).toBe(1);
-    expect(linkedList.getHead()).toBeNull();
-    expect(linkedList.getTail()).toBeNull();
-    expect(linkedList.getLength()).toBe(0);
+  describe('pop', () => {
+    test('should remove the last node', () => { 
+      linkedList.push(2);
+      expect(linkedList.getTail()).toBe(2);
+      expect(linkedList.getLength()).toBe(2);
+      let removedNode = linkedList.pop();
+      expect(removedNode?.value).toBe(2);
+      expect(linkedList.getTail()).toBe(1);
+      expect(linkedList.getLength()).toBe(1);
+    });
+
+    test('should the single item in the list', () => { 
+      const removedNode = linkedList.pop();
+      expect(removedNode?.value).toBe(1);
+      expect(linkedList.getHead()).toBeNull();
+      expect(linkedList.getTail()).toBeNull();
+      expect(linkedList.getLength()).toBe(0);
+    });
   });
 
-  test('unshift', () => {
-    linkedList.pop();
-    linkedList.unshift(2);
-    expect(linkedList.getHead()).toBe(2);
-    expect(linkedList.getTail()).toBe(2);
-    expect(linkedList.getLength()).toBe(1);
-    linkedList.unshift(3);
-    expect(linkedList.getHead()).toBe(3);
-    expect(linkedList.getTail()).toBe(2);
-    expect(linkedList.getLength()).toBe(2);
+  describe('unshift', () => {
+    test('should add a node to the beginning of the list', () => { 
+      linkedList.unshift(2);
+      expect(linkedList.getHead()).toBe(2);
+      expect(linkedList.getTail()).toBe(1);
+      expect(linkedList.getLength()).toBe(2);
+    })
   });
 
-  test('shift', () => {
-    expect(linkedList.getHead()).toBe(1);
-    linkedList.shift();
-    expect(linkedList.getHead()).toBe(null);
-    expect(linkedList.getTail()).toBe(null);
-
-    linkedList.push(2);
-    linkedList.push(3);
-    linkedList.push(4);
-    linkedList.shift();
-    expect(linkedList.getHead()).toBe(3);
-    expect(linkedList.getTail()).toBe(4);
-  });
-
-  test('get', () => { 
-    expect(linkedList.get(0)?.value).toBe(1);
-    linkedList.push(2);
-    expect(linkedList.get(1)?.value).toBe(2);
-    expect(linkedList.get(5)).toBe(null);
-    expect(linkedList.get(-1)).toBe(null);
-  });
-
-  test('set', () => { 
-    expect(linkedList.get(0)?.value).toBe(1);
-    expect(linkedList.set(100, 2)).toBeFalsy();
-    expect(linkedList.set(-1, 2)).toBeFalsy();
-    expect(linkedList.set(0, 44)).toBeTruthy();
-    expect(linkedList.get(0)?.value).toBe(44);
+  describe('shift', () => {
+    test('should remove the single item in the list', () => { 
+      expect(linkedList.getHead()).toBe(1);
+      linkedList.shift();
+      expect(linkedList.getHead()).toBe(null);
+      expect(linkedList.getTail()).toBe(null);
+    });
     
-    linkedList.push(3);
-    linkedList.push(4);
-    expect(linkedList.set(2, 10)).toBeTruthy();
-    expect(linkedList.get(2)?.value).toBe(10);
+    test('should remove the first item', () => { 
+      linkedList.push(2);
+      linkedList.push(3);
+      linkedList.shift();
+      expect(linkedList.getHead()).toBe(2);
+      expect(linkedList.getTail()).toBe(3);
+    });
   });
 
-  test('insert', () => { 
-    expect(linkedList.get(0)?.value).toBe(1);
-    expect(linkedList.insert(100, 2)).toBeFalsy();
-    expect(linkedList.insert(-1, 2)).toBeFalsy();
-    expect(linkedList.insert(0, 44)).toBeTruthy();
-    expect(linkedList.get(0)?.value).toBe(44);
-    expect(linkedList.get(1)?.value).toBe(1);
-    expect(linkedList.insert(1, 12)).toBeTruthy();
-    expect(linkedList.get(0)?.value).toBe(44);
-    expect(linkedList.get(1)?.value).toBe(12);
-    expect(linkedList.get(2)?.value).toBe(1);
+  describe('get', () => { 
+    test('should return null for invalid indexes', () => { 
+      expect(linkedList.get(5)).toBe(null);
+      expect(linkedList.get(-1)).toBe(null);
+    });
+
+    test('should get the node value', () => { 
+      expect(linkedList.get(0)?.value).toBe(1);
+      linkedList.push(2);
+      expect(linkedList.get(1)?.value).toBe(2);
+    });
+  });
+
+  describe('set', () => { 
+    test('should return false for invalid indexes', () => { 
+      expect(linkedList.set(100, 2)).toBeFalsy();
+      expect(linkedList.set(-1, 2)).toBeFalsy();
+    });
+
+    test('should change the head', () => { 
+      expect(linkedList.set(0, 44)).toBeTruthy();
+      expect(linkedList.getHead()).toBe(44);
+    });
+
+    test('should change a node in the middle', () => { 
+      linkedList.push(3);
+      linkedList.push(4);
+      expect(linkedList.set(2, 10)).toBeTruthy();
+      expect(linkedList.get(2)?.value).toBe(10);
+    });
+  });
+
+  describe('insert', () => { 
+    test('should return false for invalid indexes', () => { 
+      expect(linkedList.insert(100, 2)).toBeFalsy();
+      expect(linkedList.insert(-1, 2)).toBeFalsy();
+    });
+
+    test('should change the head', () => { 
+      expect(linkedList.insert(0, 44)).toBeTruthy();
+      expect(linkedList.getHead()).toBe(44);
+      expect(linkedList.get(1)?.value).toBe(1);
+    });
+
+    test('should change the tail', () => {
+      linkedList.push(10)
+      expect(linkedList.insert(2, 5)).toBeTruthy();
+      expect(linkedList.getTail()).toBe(5);
+    });
+
+    test('should change a node in the middle', () => { 
+      linkedList.push(20);
+      linkedList.push(30);
+      expect(linkedList.insert(1, 12)).toBeTruthy();
+      expect(linkedList.get(0)?.value).toBe(1);
+      expect(linkedList.get(1)?.value).toBe(12);
+      expect(linkedList.get(2)?.value).toBe(20);
+      expect(linkedList.get(3)?.value).toBe(30);
+    });
   });
 });
