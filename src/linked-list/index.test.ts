@@ -43,4 +43,18 @@ describe('LinkedList', () => {
     expect(linkedList.getLength()).toBe(2);
   })
 
+  test('shift', () => {
+    expect(linkedList.getHead()).toBe(1);
+    linkedList.shift();
+    expect(linkedList.getHead()).toBe(null);
+    expect(linkedList.getTail()).toBe(null);
+
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+    linkedList.shift();
+    expect(linkedList.getHead()).toBe(3);
+    expect(linkedList.getTail()).toBe(4);
+  })
+
 });

@@ -55,14 +55,14 @@ class LinkedList <T> {
   pop() {
     if(this.head == null) return null;
 
-    let newTail = null; 
+    let newTail = this.head; 
     let poppedNode = this.head;
     while(poppedNode.next != null) {
       newTail = poppedNode;
       poppedNode = poppedNode.next;
     }
 
-    if(newTail == null) {
+    if(this.tail === this.head) {
       this.head = null;
       this.tail = null;
     } else {
@@ -81,6 +81,19 @@ class LinkedList <T> {
       this.tail = newNode;
     }
     this.length++;
+  }
+
+  shift() {
+    if (this.head == null) return null;
+
+    const node = this.head;
+    this.head = this.head.next;
+    node.next = null;
+    this.length--;
+    if (this.length == 0) {
+      this.tail = null;
+    }
+    return node;
   }
 
 }
