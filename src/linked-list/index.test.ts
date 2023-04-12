@@ -78,4 +78,16 @@ describe('LinkedList', () => {
     expect(linkedList.get(2)?.value).toBe(10);
   });
 
+  test('insert', () => { 
+    expect(linkedList.get(0)?.value).toBe(1);
+    expect(linkedList.insert(100, 2)).toBeFalsy();
+    expect(linkedList.insert(-1, 2)).toBeFalsy();
+    expect(linkedList.insert(0, 44)).toBeTruthy();
+    expect(linkedList.get(0)?.value).toBe(44);
+    expect(linkedList.get(1)?.value).toBe(1);
+    expect(linkedList.insert(1, 12)).toBeTruthy();
+    expect(linkedList.get(0)?.value).toBe(44);
+    expect(linkedList.get(1)?.value).toBe(12);
+    expect(linkedList.get(2)?.value).toBe(1);
+  });
 });

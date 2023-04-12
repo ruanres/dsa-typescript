@@ -40,7 +40,7 @@ class LinkedList <T> {
   getLength() {
     return this.length;
   }
-  
+
   push(value: T) {
     const newNode = new ListNode(value);
     if (!this.tail) {
@@ -55,7 +55,7 @@ class LinkedList <T> {
   }
 
   pop() {
-    if(this.head == null) return null;
+    if(this.head === null) return null;
 
     let newTail = this.head; 
     let poppedNode = this.head;
@@ -79,20 +79,20 @@ class LinkedList <T> {
     const newNode = new ListNode(value);
     newNode.next = this.head;
     this.head = newNode;
-    if(this.tail == null) {
+    if(this.tail === null) {
       this.tail = newNode;
     }
     this.length++;
   }
 
   shift() {
-    if (this.head == null) return null;
+    if (this.head === null) return null;
 
     const node = this.head;
     this.head = this.head.next;
     node.next = null;
     this.length--;
-    if (this.length == 0) {
+    if (this.length === 0) {
       this.tail = null;
     }
     return node;
@@ -114,6 +114,30 @@ class LinkedList <T> {
     let temp = this.get(index);
     if(temp) {
       temp.value = value;
+      return true;
+    }
+    return false;
+  }
+
+  insert(index: number, value: T) {
+    if(index < 0 || index > this.length) return false;
+
+    if (index === 0) {
+      this.unshift(value);
+      return true;
+    }
+
+    if (index === this.length) {
+      this.push(value);
+      return true;
+    }
+
+    const temp = this.get(index - 1);
+    if (temp) {
+      const newNode = new ListNode(value);
+      newNode.next = temp.next;
+      temp.next = newNode;
+      this.length++;
       return true;
     }
     return false;
