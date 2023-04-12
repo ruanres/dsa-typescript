@@ -40,6 +40,7 @@ class LinkedList <T> {
   getLength() {
     return this.length;
   }
+  
   push(value: T) {
     const newNode = new ListNode(value);
     if (!this.tail) {
@@ -106,7 +107,16 @@ class LinkedList <T> {
         temp = temp.next;
       }
     }
-    return temp ? temp.value : temp;
+    return temp;
+  }
+
+  set(index: number, value: T) {
+    let temp = this.get(index);
+    if(temp) {
+      temp.value = value;
+      return true;
+    }
+    return false;
   }
 
 }
