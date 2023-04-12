@@ -57,4 +57,12 @@ describe('LinkedList', () => {
     expect(linkedList.getTail()).toBe(4);
   })
 
+  test('get', () => { 
+    expect(linkedList.get(0)).toBe(1);
+    linkedList.push(2);
+    expect(linkedList.get(1)).toBe(2);
+    expect(linkedList.get(5)).toBe(null);
+    expect(linkedList.get(-1)).toBe(null);
+   })
+
 });

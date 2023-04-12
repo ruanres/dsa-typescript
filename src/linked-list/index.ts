@@ -1,6 +1,7 @@
+type NextNode<T> = ListNode <T> | null;
 export class ListNode <T> {
   value: T;
-  next: ListNode <T> | null;
+  next: NextNode<T>;
 
   constructor(value: T) {
     this.value = value;
@@ -94,6 +95,18 @@ class LinkedList <T> {
       this.tail = null;
     }
     return node;
+  }
+
+  get(index: number) {
+    if(index < 0 || index >= this.length) return null;
+
+    let temp = this.head;
+    for (let i = 0; i < index; i++) {
+      if (temp) {
+        temp = temp.next;
+      }
+    }
+    return temp ? temp.value : temp;
   }
 
 }
