@@ -1,5 +1,5 @@
 import {beforeEach, describe, expect, test} from '@jest/globals';
-import LinkedList from '.';
+import LinkedList from './index';
 
 describe('LinkedList', () => {
   let linkedList: LinkedList<Number>;
@@ -120,6 +120,31 @@ describe('LinkedList', () => {
       expect(linkedList.get(1)?.value).toBe(12);
       expect(linkedList.get(2)?.value).toBe(20);
       expect(linkedList.get(3)?.value).toBe(30);
+    });
+  });
+
+  describe('remove', () => { 
+    test('should return false for invalid indexes', () => { 
+      expect(linkedList.remove(100)).toBeFalsy();
+      expect(linkedList.remove(-1)).toBeFalsy();
+    });
+
+    test('should remove the head', () => { 
+      expect(linkedList.remove(0)).toBeTruthy();
+      expect(linkedList.getHead()).toBe(null);
+    });
+
+    test('should remove the tail', () => {
+      linkedList.push(2);
+      expect(linkedList.remove(1)).toBeTruthy();
+      expect(linkedList.getTail()).toBe(1);
+    });
+
+    test('should remove the node in the middle', () => {
+      linkedList.push(2);
+      linkedList.push(3);
+      expect(linkedList.remove(1)).toBeTruthy();
+      expect(linkedList.getTail()).toBe(3);
     });
   });
 });

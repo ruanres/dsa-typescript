@@ -143,6 +143,33 @@ class LinkedList <T> {
     return false;
   }
 
+  remove(index: number) {
+    if(index < 0 || index > this.length) return false;
+
+    if (index === 0) {
+      this.shift();
+      return true;
+    }
+
+    if (index === this.length - 1) {
+      this.pop();
+      return true;
+    }
+
+    const temp = this.get(index - 1);
+    if (temp) {
+      const removedNode = temp.next;
+      if (removedNode?.next) {
+        temp.next = removedNode.next;
+        removedNode.next = null;
+        this.length--;
+        return true;
+      }
+    }
+
+    return false;
+  }
+
 }
 
 export default LinkedList;
