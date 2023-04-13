@@ -147,13 +147,11 @@ class LinkedList <T> {
     if(index < 0 || index > this.length) return false;
 
     if (index === 0) {
-      this.shift();
-      return true;
+      return this.shift();
     }
 
     if (index === this.length - 1) {
-      this.pop();
-      return true;
+      return this.pop();
     }
 
     const temp = this.get(index - 1);
@@ -163,11 +161,11 @@ class LinkedList <T> {
         temp.next = removedNode.next;
         removedNode.next = null;
         this.length--;
-        return true;
+        return removedNode;
       }
     }
 
-    return false;
+    return null;
   }
 
 }
