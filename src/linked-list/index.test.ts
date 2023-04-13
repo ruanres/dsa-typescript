@@ -147,4 +147,17 @@ describe('LinkedList', () => {
       expect(linkedList.getTail()).toBe(3);
     });
   });
+
+  describe('reverse', () => {
+    test('should reverse a list with one node', () => { 
+      expect(linkedList.reverse()).toEqual(new LinkedList(1));
+    });
+
+    test('should reverse the whole list', () => { 
+      linkedList.push(2);
+      linkedList.push(3);
+      const reversed = (new LinkedList(3)).push(2).push(1);
+      expect(linkedList.reverse()).toEqual(reversed);
+    });
+  });
 });

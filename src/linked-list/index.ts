@@ -168,6 +168,23 @@ class LinkedList <T> {
     return null;
   }
 
+
+  reverse() {
+    let previous: NextNode<T> = null;
+    let next: NextNode<T> = null;
+    let current = this.head;
+    while(current) {
+      next = current.next;
+      current.next = previous;
+      previous = current;
+      current = next;
+    }
+    const oldHead = this.head;
+    this.head = this.tail;
+    this.tail = oldHead;
+    return this;
+  }
+
 }
 
 export default LinkedList;
