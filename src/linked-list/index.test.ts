@@ -108,7 +108,7 @@ describe('LinkedList', () => {
 
     test('should change the tail', () => {
       linkedList.push(10)
-      expect(linkedList.insert(2, 5)).toBeTruthy();
+      expect(linkedList.insert(1, 5)).toBeTruthy();
       expect(linkedList.getTail()).toBe(5);
     });
 

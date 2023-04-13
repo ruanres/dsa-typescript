@@ -127,7 +127,7 @@ class LinkedList <T> {
       return true;
     }
 
-    if (index === this.length) {
+    if (index === this.length - 1) {
       this.push(value);
       return true;
     }
