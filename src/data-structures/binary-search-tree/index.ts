@@ -66,4 +66,28 @@ export default class BinarySearchTree<T> {
     return null;
   }
 
+  getMinimum(){
+    return this.treeMinimum(this.root);
+  }
+
+  getMaximum(){
+    return this.treeMaximum(this.root);
+  }
+
+  private treeMinimum(node: TreeNode<T> | null) {
+    let currentNode = node;
+    while(currentNode?.left) {
+      currentNode = currentNode.left;
+    }
+    return currentNode;
+  }
+
+  private treeMaximum(node: TreeNode<T>| null) {
+    let currentNode = node;
+    while(currentNode?.right) {
+      currentNode = currentNode.right;
+    }
+    return currentNode;
+  }
+
 }

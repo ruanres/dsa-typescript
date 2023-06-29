@@ -56,4 +56,34 @@ describe('BinarySearchTree', () => {
       expect(bst.lookup(5)).toBe(bst.root?.left);
     });
   });
+
+  describe('getMinimum', () => {
+    it('should return null when the tree is empty', () => {
+      expect(bst.getMinimum()).toBeNull();
+    });
+
+    it('should return the minimum node', () => {
+      bst
+        .insert(100)
+        .insert(5)
+        .insert(44)
+        .insert(2);
+        expect(bst.getMinimum()?.value).toBe(2);
+    });
+   });
+
+   describe('getMaximum', () => {
+    it('should return null when the tree is empty', () => {
+      expect(bst.getMaximum()).toBeNull();
+    });
+
+    it('should return the minimum node', () => {
+      bst
+        .insert(33)
+        .insert(5)
+        .insert(44)
+        .insert(50);
+        expect(bst.getMaximum()?.value).toBe(50);
+    });
+   });
 });
