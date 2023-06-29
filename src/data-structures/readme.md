@@ -21,3 +21,13 @@ It can be implemented using linked lists, arrays and even a stack. Linked lists 
 | pop         | O(1)        |
 | push        | O(1)        |
 | peek        | O(1)        |
+
+## Binary Search Tree
+
+It is a tree in which each node has at most two children. Besides that, the left subtree of a node contains only nodes with keys lesser than the node’s key. While the right subtree contains only nodes with keys greater than the node’s key.
+
+| Operation   | Performance |
+| ----------- | ----------- |
+| lookup      | O(log(n))   |
+| insert      | O(log(n))   |
+| delete      | O(log(n))   |
