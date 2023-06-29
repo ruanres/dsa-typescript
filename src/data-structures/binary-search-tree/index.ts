@@ -53,20 +53,17 @@ export default class BinarySearchTree<T> {
   }
 
   lookup(value: T) {
-    return this.findNode(value, this.root);
-  }
-
-  private findNode(value: T, currentNode: TreeNode<T> | null): TreeNode<T> | null {
-    if(!currentNode) {
-      return null;
+    let currentNode = this.root;
+    while(currentNode !== null) {
+      if(value === currentNode.value) {
+        return currentNode;
+      } else if(value > currentNode.value) {
+        currentNode = currentNode.right;
+      } else {
+        currentNode = currentNode.left;
+      }
     }
-    if(value === currentNode.value) {
-      return currentNode;
-    } else if(value > currentNode.value) {
-      return this.findNode(value, currentNode.right);
-    } else {
-      return this.findNode(value, currentNode.left); 
-    }
+    return null;
   }
 
 }
