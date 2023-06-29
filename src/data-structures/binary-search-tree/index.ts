@@ -30,37 +30,26 @@ export default class BinarySearchTree<T> {
   }
 
   insert(value: T) {
+    let lastVisitedNode: TreeNode<T> | null = null;
+    let currentNode = this.root;
+    while(currentNode !== null) {
+      lastVisitedNode = currentNode;
+      if(value > currentNode.value) {
+        currentNode = currentNode.right;
+      } else {
+        currentNode = currentNode.left;
+      }
+    }
     const newNode = new TreeNode(value);
-    if (!this.root) {
+    if(lastVisitedNode === null) {
       this.root = newNode;
+    } else if (value > lastVisitedNode.value) {
+      lastVisitedNode.right = newNode;
     } else {
-      this.insertNode(newNode, this.root);
+      lastVisitedNode.left = newNode;
     }
+
     return this;
-  }
-
-  private insertNode(newNode: TreeNode<T>, parent: TreeNode<T>) {
-    if(newNode.value > parent.value) {
-      this.insertRight(newNode, parent);
-    } else {
-      this.insertLeft(newNode, parent);
-    }
-  }
-
-  private insertRight(newNode: TreeNode<T>, parent: TreeNode<T>) {
-    if(parent.isRightEmpty()) {
-      parent.right = newNode;
-    } else {
-      this.insertNode(newNode, parent.right!);
-    }
-  }
-
-  private insertLeft(newNode: TreeNode<T>, parent: TreeNode<T>) {
-    if(parent.isLeftEmpty()) {
-      parent.left = newNode;
-    } else {
-      this.insertNode(newNode, parent.left!);
-    }
   }
 
   lookup(value: T) {
