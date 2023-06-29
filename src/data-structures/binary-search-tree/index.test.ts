@@ -31,4 +31,29 @@ describe('BinarySearchTree', () => {
         expect(bst.root?.right?.getRight()).toBe(170);
     });
   });
+
+  describe('lookup', () => {
+    beforeEach(() => {
+      bst
+        .insert(10)
+        .insert(5)
+        .insert(44)
+    });
+
+    it('should return the root node', () => {
+      expect(bst.lookup(10)).toBe(bst.root);
+    });
+
+    it('should return the null when the node in not found', () => {
+      expect(bst.lookup(99)).toBeNull();
+    });
+
+    it('should find a node on the right', () => {
+      expect(bst.lookup(44)).toBe(bst.root?.right);
+    });
+
+    it('should find a node on the left', () => {
+      expect(bst.lookup(5)).toBe(bst.root?.left);
+    });
+  });
 });
