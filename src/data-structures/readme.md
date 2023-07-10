@@ -31,3 +31,23 @@ It is a tree in which each node has at most two children. Besides that, the left
 | lookup      | O(log(n))   |
 | insert      | O(log(n))   |
 | delete      | O(log(n))   |
+
+## Linked List
+
+It is composed by a set of nodes that have a value and a pointer to another node, if it is a single linked list, and it can also have another pointer to the previous node when it is a double linked list.
+
+It has fast insertion and deletion, it is ordered and has flexible size. On the other hand, it has a slow lookup and requires more memory to store data, specially when it as double linked list.
+
+| Operation   | Performance |
+| ----------- | ----------- |
+| append      | O(1)        |
+| prepend     | O(1)        |
+| lookup      | O(n)        |
+| insert      | O(n)        |
+| delete      | O(n)        |
+
+## Graph
+
+It is a set of values that are related. That is why it is the best data structure to represent real world relationships, like the users in a social media, for example.
+
+It can be directed or undirected, weighted or unweighted and cyclic and acyclic.
